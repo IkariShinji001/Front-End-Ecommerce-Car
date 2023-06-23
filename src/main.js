@@ -2,7 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/router'
 import Toast from "vue-toastification";
+import store from './store/store';
 import "vue-toastification/dist/index.css";
+import '@mdi/font/css/materialdesignicons.css';
 
 // Vuetify
 import 'vuetify/styles'
@@ -15,4 +17,4 @@ const vuetify = createVuetify({
   directives,
 })
 
-createApp(App).use(router).use(vuetify).use(Toast).mount('#app')
+createApp(App).use(store).use(router).use(vuetify).use(Toast).mount('#app')

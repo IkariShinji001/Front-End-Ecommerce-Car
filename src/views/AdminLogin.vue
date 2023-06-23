@@ -46,21 +46,21 @@
 
 <script>
 import { ref } from 'vue'
-import {login} from '../services/auth.service'
 import { useToast } from "vue-toastification";
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 export default {
     name: "AdminLogin",
     setup(){
         const username = ref("");
         const password = ref("");
         const toast = useToast();
-        const showPassword = false;
         const router = useRouter();
+        const store = useStore();
 
         const handleSubmit = async () =>{
-            const res = await login(username.value, password.value);
-            if(res.role === "admin"){
+            await store.dispatch('user/login', {username: username.value, password: password.value});
+            if(store.getters['user/getRole'] === "admin"){
                 toast.success("Đăng nhập thành công", {
                 timeout: 2000
                 });
@@ -77,7 +77,7 @@ export default {
         }
 
         return{
-            username, password, handleSubmit, showPassword, rules
+            username, password, handleSubmit, rules
         }
     }
 

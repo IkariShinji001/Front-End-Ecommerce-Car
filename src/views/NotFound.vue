@@ -4,7 +4,15 @@
             <h1>Oops!</h1>
             <div class="content-body">
                 <h2>404 - Không tìm thấy trang web</h2>
-                <router-link to="/">Trở về trang chủ</router-link>
+                <router-link to="/">
+                    <v-btn 
+                    variant="outlined"
+                    elevation="4"
+                    rounded="lg"
+                    class="mt-5"
+                    >
+                    Về trang chủ</v-btn>
+                </router-link>
             </div>
         </section>
     </v-container>
@@ -45,6 +53,11 @@ export default {
             width: 75%;
             justify-content: center;
             align-items: center;
+
+            .return-homepage-btn{
+                margin-top: 20px;
+                color: blue;
+            }
         }
 
     }
