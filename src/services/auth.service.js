@@ -1,23 +1,26 @@
-import axios from "axios";
-import jwt from "jsonwebtoken";
-
-
-const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+import api from "./axiosConfig"
+import jwt from "jsonwebtoken"
   
 export const login = async ({username, password}) =>{
     try {
         const res = await api.post("/auth/login", {username, password});
-        if(res.data.token){
-            localStorage.setItem("token", res.data.token);
-            const decodedToken = jwt.decode(res.data.token);
-            return {decodedToken, token: res.data.token};
+        if(res.data.success){
+            const decoded = jwt.decode(res.data.accessToken);
+            return decoded;
         }
       } catch (error) {
-        return false;
+          return false;
       }
 }
+
+export const logout = async () =>{
+    try {
+        const res = await api.post("/auth/logout");
+        if(res.data.success){
+            return true;
+        }
+      } catch (error) {
+          return false;
+      }
+}
+

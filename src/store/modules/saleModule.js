@@ -1,16 +1,17 @@
 import { reactive } from 'vue';
-import {getProfitByMonths} from "../../services/sale.service"
-import {getCarSoldByMonths} from "../../services/sale.service"
+import {getProfitByMonths, getCarSoldByMonths, getAllCarSoldSortedDate} from "../../services/sale.service"
 
 const state = reactive({
   data: [],
   labels: [],
-  error: null
+  error: null,
+  carsSold: []
 });
 
 const getters = {
   getData: (state) => state.data,
   getLabels: (state) => state.labels,
+  getCarsSold: (state) => state.carsSold, 
   getError: (state) => state.error,
 };
 
@@ -23,6 +24,9 @@ const mutations = {
   },
   setError(state, error) {
     state.error = error;
+  },
+  setCarsSold(state, data){
+    state.carsSold = data;
   }
 };
 
@@ -48,6 +52,15 @@ const actions = {
     } catch (error) {
       commit('setData', null);
       commit('setLabels', null);
+      commit('setError', error.response.data.error);
+    }
+  },
+  async getAllCarSoldSortedDate({ commit }) {
+    try {
+      const res = await getAllCarSoldSortedDate();
+      commit('setCarsSold', res);
+    } catch (error) {
+      commit('setCarsSold', null);
       commit('setError', error.response.data.error);
     }
   },

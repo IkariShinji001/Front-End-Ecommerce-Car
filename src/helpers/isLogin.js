@@ -1,18 +1,14 @@
-const jwt = require('jsonwebtoken');
+import api from "@/services/axiosConfig"
 
-export const isLogin = () =>{
-    const token = localStorage.getItem("token");
-    if (token) {
+export const isLogin = async () =>{
         try {
-          const decodedToken = jwt.verify(token, "Maybachgls600");
-          const currentTime = Math.floor(Date.now() / 1000);
-          if (decodedToken.exp < currentTime) {
+          const res = await api.post("/auth/verify/access-token");
+          if(res.data.success){
+            return true;
+          }else{
             return false;
           }
-          return true;
         } catch (error) {
-          console.log(error);
           return false;
         }
-      }
-}
+ }

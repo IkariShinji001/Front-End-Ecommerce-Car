@@ -21,9 +21,10 @@ const routes = [
     routes,
   });
 
-  router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !isLogin()) {
-      next('/login');
+  router.beforeEach( async (to, from, next) => {
+    const isLoginState = await isLogin();
+    if (to.meta.requiresAuth && !isLoginState) {
+      next('/');
     } else {
       next();
     }

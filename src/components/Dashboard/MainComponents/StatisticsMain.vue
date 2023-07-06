@@ -1,18 +1,21 @@
 <template>
+      <HeadTitle :title="'Thống Kê'"></HeadTitle>
       <v-select 
-        class="select-chart-options"
-        label=""
+        class="select-chart-options ml-8  "
         :items="selectChartOptions"
+        variant="outlined"
         v-model="selectedOption"
         @update:modelValue="getDataChartByOptions"
+        hide-details="true"
       ></v-select>
       <Chart v-if="isDataLoaded" v-bind:chartDetail="chartDetail"></Chart>
       <TableData></TableData>
 </template>
 
 <script>
-  import TableData from "./TableData.vue";
-  import Chart from "../DataStatisticsChart.vue"
+  import TableData from "@/components/Dashboard/TableData.vue";
+  import HeadTitle from "@/components/Dashboard/HeadTitle.vue";
+  import Chart from "@/components/DataStatisticsChart.vue"
   import { useStore } from 'vuex';
   import { onBeforeMount, ref, computed, reactive } from 'vue';
 
@@ -20,7 +23,8 @@
         name: "StatisticsMain",
         components: {
             Chart,
-            TableData
+            TableData,
+            HeadTitle
         },
       setup(){
             const chartOptions = [{
@@ -35,8 +39,8 @@
               unit: "Xe",
               type: "line"
             }]  
-          const store = useStore();
           const selectedOption = ref("Lợi nhuận theo tháng");
+          const store = useStore();
           const chartDetail = reactive({
             name: "Lợi nhuận theo tháng",
             method: "getProfitByMonths",
@@ -83,6 +87,7 @@
   .select-chart-options{
     display: block !important;
     width: 300px !important;
+    margin-top: 50px;
     margin-bottom: 20px;
     background-color: white;
     color: black

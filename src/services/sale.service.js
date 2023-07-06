@@ -1,11 +1,4 @@
-import axios from "axios";
-
-const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+import api from "./axiosConfig"
   
 export const getProfitByMonths = async () =>{
     try {
@@ -38,5 +31,27 @@ export const getTotalCarsSold = async () =>{
     }
   } catch (error) {
     return false;   
+  }
+}
+
+export const getTotalSale = async () =>{
+  try {
+    const res = await api.get("/sales/total-sale");
+    if(res.data){
+      return res.data.totalSale;
+    }
+  } catch (error) {
+    return false;   
+  }
+}
+
+export const getAllCarSoldSortedDate = async () =>{
+  try{
+    const res = await api.get("/sales/cars");
+    if(res.data){
+      return res.data;
+    }
+  }catch(error){
+    return false;
   }
 }

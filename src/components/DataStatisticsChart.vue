@@ -1,5 +1,5 @@
 <template>
-    <h2>Biểu đồ  : {{chartDetail.name}}</h2>
+    <h2>{{chartDetail.name}}</h2>
     <canvas ref="chartCanvas" class="canvas"></canvas>
 </template>
 
@@ -132,7 +132,6 @@ export default {
     h2{
       text-align: center;
       font-size: 23px;
-      font-family: Arial, Helvetica, sans-serif;
       text-transform: uppercase;
       margin-bottom: 20px;
     }

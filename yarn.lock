@@ -6563,6 +6563,11 @@ vm-browserify@^1.1.2:
   resolved "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
+vn-num2words@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vn-num2words/-/vn-num2words-1.0.4.tgz#caf79b18214c69e9ad53102063a64c4c99e44707"
+  integrity sha512-Zjm/TOsYK3kdoylWibXriM9GTLFRS5ACpI2+yqHgltMaIp7/QStHEqBb5M4vfjqz/Xosg3jrT7YVmllJEbY3Vg==
+
 vue-eslint-parser@^8.0.1:
   version "8.3.0"
   resolved "https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-8.3.0.tgz"
